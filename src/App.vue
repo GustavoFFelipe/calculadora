@@ -40,13 +40,18 @@ const estado = reactive({
     <br>
     <hr>
     <div class="contador">
-      Numero 1: {{ estado.number }} <br>
-      Numero 2:{{ estado.secondNumber }} <br>
       Resultado: {{ calc(estado.number, estado.secondNumber, estado.operatorType) }} <br>
       Operador: {{ estado.operatorType }}
     </div>
-    <div class="calcContainer">
+   
+
+      
+      <div class="calc">
+        <input placeholder="Digite o primeiro número" type="number" @keyup="evento => estado.number = evento.target.value"><br>
+
+        <div class="calcContainer">
       <select @change="evento => estado.operatorType = evento.target.value">
+        <option value="">Selecione</option>
         <option value="+">+</option>
         <option value="-">-</option>
         <option value="*">*</option>
@@ -57,10 +62,7 @@ const estado = reactive({
       </select>
       <br>
 
-      
-      <div class="calc">
-        <input type="number" @keyup="evento => estado.number = evento.target.value"><br>
-        <input type="number" @keyup="evento => estado.secondNumber = evento.target.value">
+        <input placeholder="digite o segundo número" type="number" @keyup="evento => estado.secondNumber = evento.target.value">
       </div>
     </div>
   </div>
@@ -81,23 +83,10 @@ const estado = reactive({
     background-color: #023047;
     color: #fff;
   }
-  .number{
-    width: 50px;
-    height: 30px;
-    border: 1px solid #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    background-color: transparent;
-    color: #fff;
-  }
-  .number:hover{
-    cursor: pointer;
-  }
+
   .calc{
     display: grid;
-    margin: 16px auto;
+    margin: 16px auto 0 auto;
     grid-template-columns:1fr;
 
   }
@@ -105,7 +94,10 @@ const estado = reactive({
     font-size: 24px;
     margin-bottom: 16px;
   }
-  input{
+  select{
+    margin: 0 auto 20px auto;
+  }
+  input {
     border-radius: 4px;
     background: rgba(0,0,0,.2);
     border: 1px solid #000;
